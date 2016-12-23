@@ -2,7 +2,7 @@
 	
 	[Install CMake](https://cmake.org/)
 
-	git clone project.git
+	git clone --recursive project.git
 	cd project
 	cd build/
 	cmake ..
