@@ -32,10 +32,6 @@ namespace Simplex
 	Window::Window() 
 	{
 		logger.log("Creating window...\n");
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		printf("GLFW version: %s\n", glfwGetVersionString());
 		glfwSetErrorCallback(handleError);
@@ -44,6 +40,11 @@ namespace Simplex
 		  fprintf(stderr, "ERROR: could not start GLFW3\n");
 		  throw std::exception();
 		} 
+
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		GLFWmonitor* mon = glfwGetPrimaryMonitor();
 		const GLFWvidmode* vmode = glfwGetVideoMode(mon);

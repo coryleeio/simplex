@@ -1,5 +1,6 @@
 
 #include <core.h>
+#include <math.h>
 #define GL_LOG_FILE "gl.log"
 
 int main() {
