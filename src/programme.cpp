@@ -38,7 +38,7 @@ namespace Simplex
 				"ERROR: could not link shader programme GL index %u\n",
 				programme);
 			printProgrammeInfoToLog(programme);
-			exit(1);
+			throw std::exception();
 		}
 	}
 
@@ -168,6 +168,6 @@ namespace Simplex
 	void Programme::setVector4f(const char* inputName, float x,float y,float z,float w)
 	{
 		GLint inputColorLocation = glGetUniformLocation(programmeId, inputName);
-		glUniform4f(inputColorLocation, 0.5f, 0.0f, 0.5f, 1.0f);
+		glUniform4f(inputColorLocation, x, y, z, w);
 	}
 }
