@@ -9,9 +9,19 @@ set (INCLUDE_DIRS
  	deps/glew/include
 )
 
+set (SOURCE_FILES
+	src/shader.cpp
+	src/programme.cpp
+	src/window.cpp
+)
+
 include_directories(${INCLUDE_DIRS})
 
-add_executable( shader_test tests/shader_test.cpp src/shader.cpp)
-target_link_libraries(shader_test libglew_static glfw ${GLFW_LIBRARIES})
+add_library( SimplexRenderer ${SOURCE_FILES})
+target_link_libraries( SimplexRenderer libglew_static glfw ${GLFW_LIBRARIES})
+
+
+add_executable( demo1 tests/demo1.cpp)
+target_link_libraries(demo1 SimplexRenderer)
 
 ADD_DEFINITIONS(-DGLEW_STATIC)

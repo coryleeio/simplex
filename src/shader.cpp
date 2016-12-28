@@ -1,8 +1,9 @@
 #include <shader.h>
 
-namespace SIMPLEX
+namespace Simplex
 {
-	std::string getFileContents(const char *filename) {
+	static std::string getFileContents(const char *filename) 
+	{
 		std::string shaderString;
 		std::string line;
 		std::ifstream stream(filename);
@@ -21,7 +22,8 @@ namespace SIMPLEX
 		return shaderString;
 	}
 
-	void printShaderInfoLog(GLuint shader_index) {
+	static void printShaderInfoLog(GLuint shader_index) 
+	{
 		int max_length = 2048;
 		int actual_length = 0;
 		char shader_log[2048];
@@ -29,7 +31,8 @@ namespace SIMPLEX
 		printf("shader info log for GL index %u:\n%s\n", shader_index, shader_log);
 	}
 
-	void checkShaderCompileErrors(GLuint shader_index) {
+	static void checkShaderCompileErrors(GLuint shader_index) 
+	{
 		int params = -1;
 		glGetShaderiv(shader_index, GL_COMPILE_STATUS, &params);
 		if (GL_TRUE != params) {
@@ -39,7 +42,8 @@ namespace SIMPLEX
 		}
 	}
 
-	Shader::Shader(const char *filename, GLenum shaderType) {
+	Shader::Shader(const char *filename, GLenum shaderType) 
+	{
 		std::string shader_str = getFileContents(filename);
 		const char* shader_content = shader_str.c_str();
 		shaderId = glCreateShader(shaderType);
@@ -48,7 +52,8 @@ namespace SIMPLEX
 		checkShaderCompileErrors(shaderId);
 	}
 
-	GLuint Shader::getShaderId() {
+	GLuint Shader::getShaderId() 
+	{
 		return shaderId;
 	}
 }
