@@ -3,7 +3,6 @@
 #define GL_LOG_FILE "gl.log"
 
 int main() {
-
   Simplex::Window window;
   float points[] = {
      0.0f,  0.5f,  0.0f,
@@ -27,7 +26,7 @@ int main() {
   Simplex::Shader fragmentShader("../tests/demo2/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Programme programme(vertexShader, fragmentShader);
   programme.activate();
-  programme.setVector4f("inputColour", 1.0f, 0.0f, 0.0f, 1.0f);
+  programme.setFloat("gScale", sinf(1.0f));
 
   while(!window.shouldClose()) {
     window.clear();

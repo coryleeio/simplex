@@ -1,14 +1,14 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 #include <common.h>
-
+#include <logger.h>
 namespace Simplex
 {
+	extern Logger logger;
 	class Window
 	{
 		public:
 			Window();
-			GLFWwindow* getWindow();
 			bool shouldClose();
 			void close();
 			void draw();

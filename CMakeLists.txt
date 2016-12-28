@@ -13,6 +13,7 @@ set (SOURCE_FILES
 	src/shader.cpp
 	src/programme.cpp
 	src/window.cpp
+	src/logger.cpp
 )
 
 include_directories(${INCLUDE_DIRS})

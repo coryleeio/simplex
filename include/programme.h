@@ -2,9 +2,11 @@
 #define PROGRAMME_H
 #include <common.h>
 #include <shader.h>
+#include <logger.h>
 
 namespace Simplex
 {
+	extern Logger logger;
 	class Programme 
 	{
 		public:
@@ -13,6 +15,7 @@ namespace Simplex
 			GLuint getVertexShaderId();
 			GLuint getFragmentShaderId();
 			void setVector4f(const char* inputName, float x,float y,float z,float w);
+			void setFloat(const char* inputName, float x);
 			void activate();
 		private:
 			GLuint vertexShaderId;

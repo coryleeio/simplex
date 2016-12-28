@@ -3,7 +3,6 @@
 #define GL_LOG_FILE "gl.log"
 
 int main() {
-
   Simplex::Window window;
   float points[] = {
      0.0f,  0.5f,  0.0f,

@@ -2,6 +2,8 @@
 
 namespace Simplex
 {
+	extern Logger logger;
+
 	static void handleError(int error, const char* description) {
 	  printf("GLFW ERROR: code %i msg: %s\n", error, description);
 	}
@@ -29,6 +31,7 @@ namespace Simplex
 
 	Window::Window() 
 	{
+		logger.log("Creating window...\n");
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -88,10 +91,6 @@ namespace Simplex
 	void Window::close()
 	{
 		glfwSetWindowShouldClose(window, 1);
-	}
-
-	GLFWwindow* Window::getWindow(){
-		return window;
 	}
 
 	bool Window::shouldClose() 
