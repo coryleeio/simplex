@@ -23,13 +23,16 @@ int main() {
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-  Simplex::Shader vertexShader("../tests/demo2/shader.vert", GL_VERTEX_SHADER);
-  Simplex::Shader fragmentShader("../tests/demo2/shader.frag", GL_FRAGMENT_SHADER);
-  Simplex::Programme programme(vertexShader, fragmentShader);
-  programme.activate();
-  programme.setFloat("gScale", sinf(1.0f));
+  Simplex::Shader vertexShader("../tests/5uniforms/shader.vert", GL_VERTEX_SHADER);
+  Simplex::Shader fragmentShader("../tests/5uniforms/shader.frag", GL_FRAGMENT_SHADER);
+  Simplex::Program program(vertexShader, fragmentShader);
+  program.activate();
+   
+  float input = 1.0f;
 
   while(!window.shouldClose()) {
+    program.setFloat("gScale", sinf(input));
+    input += 0.001f;
     window.clear();
     glBindVertexArray(vao);
     // draw points 0-3 from the currently bound VAO with current in-use shader

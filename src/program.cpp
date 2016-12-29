@@ -1,4 +1,4 @@
-#include <programme.h>
+#include <program.h>
 
 namespace Simplex
 {
@@ -24,36 +24,36 @@ namespace Simplex
 		return "other";
 	}
 
-	static void printProgrammeInfoToLog(GLuint programme) {
+	static void printProgramInfoToLog(GLuint program) {
 		int max_length = 2048;
 		int actual_length = 0;
 		char program_log[2048];
-		glGetProgramInfoLog(programme, max_length, &actual_length, program_log);
-		logger.error("program info log for GL index %u:\n%s", programme, program_log);
+		glGetProgramInfoLog(program, max_length, &actual_length, program_log);
+		logger.error("program info log for GL index %u:\n%s", program, program_log);
 	}
 
-	static void checkShaderProgrammeLinkingErrors(GLuint programme) {
+	static void checkShaderProgramLinkingErrors(GLuint program) {
 		int params = -1;
-		glGetProgramiv(programme, GL_LINK_STATUS, &params);
+		glGetProgramiv(program, GL_LINK_STATUS, &params);
 		if (GL_TRUE != params) {
 			fprintf(stderr,
-				"ERROR: could not link shader programme GL index %u\n",
-				programme);
-			printProgrammeInfoToLog(programme);
+				"ERROR: could not link shader program GL index %u\n",
+				program);
+			printProgramInfoToLog(program);
 			throw std::exception();
 		}
 	}
 
-	static void describeShaderProgramme(GLuint programme) {
-		logger.log("--------------------\nshader programme %i info:\n", programme);
+	static void describeShaderProgram(GLuint program) {
+		logger.log("--------------------\nshader program %i info:\n", program);
 		int params = -1;
-		glGetProgramiv(programme, GL_LINK_STATUS, &params);
+		glGetProgramiv(program, GL_LINK_STATUS, &params);
 		logger.log("GL_LINK_STATUS = %i\n", params);
 
-		glGetProgramiv(programme, GL_ATTACHED_SHADERS, &params);
+		glGetProgramiv(program, GL_ATTACHED_SHADERS, &params);
 		logger.log("GL_ATTACHED_SHADERS = %i\n", params);
 
-		glGetProgramiv(programme, GL_ACTIVE_ATTRIBUTES, &params);
+		glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &params);
 		logger.log("GL_ACTIVE_ATTRIBUTES = %i\n", params);
 		for (int i = 0; i < params; i++) {
 			char name[64];
@@ -62,7 +62,7 @@ namespace Simplex
 			int size = 0;
 			GLenum type;
 			glGetActiveAttrib(
-				programme,
+				program,
 				i,
 				max_length,
 				&actual_length,
@@ -74,19 +74,19 @@ namespace Simplex
 				for (int j = 0; j < size; j++) {
 					char long_name[64];
 					sprintf(long_name, "%s[%i]", name, j);
-					int location = glGetAttribLocation(programme, long_name);
+					int location = glGetAttribLocation(program, long_name);
 					logger.log("  %i) type:%s name:%s location:%i\n",
 						i, glTypeToString(type), long_name, location);
 				}
 			}
 			else {
-				int location = glGetAttribLocation(programme, name);
+				int location = glGetAttribLocation(program, name);
 				logger.log("  %i) type:%s name:%s location:%i\n",
 					i, glTypeToString(type), name, location);
 			}
 		}
 
-		glGetProgramiv(programme, GL_ACTIVE_UNIFORMS, &params);
+		glGetProgramiv(program, GL_ACTIVE_UNIFORMS, &params);
 		logger.log("GL_ACTIVE_UNIFORMS = %i\n", params);
 		for (int i = 0; i < params; i++) {
 			char name[64];
@@ -95,7 +95,7 @@ namespace Simplex
 			int size = 0;
 			GLenum type;
 			glGetActiveUniform(
-				programme,
+				program,
 				i,
 				max_length,
 				&actual_length,
@@ -107,77 +107,83 @@ namespace Simplex
 				for (int j = 0; j < size; j++) {
 					char long_name[64];
 					sprintf(long_name, "%s[%i]", name, j);
-					int location = glGetUniformLocation(programme, long_name);
+					int location = glGetUniformLocation(program, long_name);
 					logger.log("  %i) type:%s name:%s location:%i\n",
 						i, glTypeToString(type), long_name, location);
 				}
 			}
 			else {
-				int location = glGetUniformLocation(programme, name);
+				int location = glGetUniformLocation(program, name);
 				logger.log("  %i) type:%s name:%s location:%i\n",
 					i, glTypeToString(type), name, location);
 			}
 		}
 
-		printProgrammeInfoToLog(programme);
+		printProgramInfoToLog(program);
 	}
 
 	/* This is a very expensive operation, only use for debug */
-	static bool isValid(GLuint programme) {
-		glValidateProgram(programme);
+	static bool isValid(GLuint program) {
+		glValidateProgram(program);
 		int params = -1;
-		glGetProgramiv(programme, GL_VALIDATE_STATUS, &params);
-		logger.log("program %i GL_VALIDATE_STATUS = %i\n", programme, params);
+		glGetProgramiv(program, GL_VALIDATE_STATUS, &params);
+		logger.log("program %i GL_VALIDATE_STATUS = %i\n", program, params);
 		if (GL_TRUE != params) {
-			printProgrammeInfoToLog(programme);
+			printProgramInfoToLog(program);
 			return false;
 		}
 		return true;
 	}
 
-	Programme::Programme(Shader& vertexShader, Shader& fragmentShader)
+	Program::Program(Shader& vertexShader, Shader& fragmentShader)
 	{
-		logger.log("Building shader programme...\n");
+		logger.log("Building shader program...\n");
 		vertexShaderId = vertexShader.getShaderId();
 		fragmentShaderId = fragmentShader.getShaderId();
-		programmeId = glCreateProgram();
-		glAttachShader(programmeId, fragmentShader.getShaderId());
-		glAttachShader(programmeId, vertexShader.getShaderId());
-		glLinkProgram(programmeId);
-		checkShaderProgrammeLinkingErrors(programmeId);
-		isValid(programmeId);
+		programId = glCreateProgram();
+		glAttachShader(programId, fragmentShader.getShaderId());
+		glAttachShader(programId, vertexShader.getShaderId());
+		glLinkProgram(programId);
+		checkShaderProgramLinkingErrors(programId);
+		isValid(programId);
 	}
 
-	GLuint Programme::getVertexShaderId()
+	GLuint Program::getVertexShaderId()
 	{
 		return vertexShaderId;
 	}
 
-	GLuint Programme::getFragmentShaderId()
+	GLuint Program::getFragmentShaderId()
 	{
 		return fragmentShaderId;
 	}
 
-	GLuint Programme::getProgrammeId() 
+	GLuint Program::getProgramId() 
 	{
-		return programmeId;
+		return programId;
 	}
 
-	void Programme::activate()
+	void Program::activate()
 	{
-		glUseProgram(programmeId);
+		glUseProgram(programId);
 	}
 
-	void Programme::setVector4f(const char* inputName, float x,float y,float z,float w)
+	void Program::setVector4f(const char* inputName, float x,float y,float z,float w)
 	{
-		GLint inputLocation = glGetUniformLocation(programmeId, inputName);
+		GLint inputLocation = glGetUniformLocation(programId, inputName);
 		glUniform4f(inputLocation, x, y, z, w);
 	}
 
-	void Programme::setFloat(const char* inputName, float input)
+	void Program::setFloat(const char* inputName, float input)
 	{
-		GLint inputLocation = glGetUniformLocation(programmeId, inputName);
+		GLint inputLocation = glGetUniformLocation(programId, inputName);
 		assert(inputLocation != 0xFFFFFFFF);
 		glUniform1f(inputLocation, input);
+	}
+
+	void Program::setMatrix4f(const char* inputName, Matrix4f inputMatrix)
+	{
+		GLint worldLocation = glGetUniformLocation(programId, inputName);
+		glUniformMatrix4fv(worldLocation, 1, GL_TRUE, &inputMatrix.m[0][0]);
 	}
 }

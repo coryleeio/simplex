@@ -1,5 +1,5 @@
-#ifndef PROGRAMME_H
-#define PROGRAMME_H
+#ifndef PROGRAM_H
+#define PROGRAM_H
 #include <common.h>
 #include <shader.h>
 #include <logger.h>
@@ -7,20 +7,21 @@
 namespace Simplex
 {
 	extern Logger logger;
-	class Programme 
+	class Program 
 	{
 		public:
-			Programme(Shader& vertexShader, Shader& fragmentShader);
-			GLuint getProgrammeId();
+			Program(Shader& vertexShader, Shader& fragmentShader);
+			GLuint getProgramId();
 			GLuint getVertexShaderId();
 			GLuint getFragmentShaderId();
 			void setVector4f(const char* inputName, float x,float y,float z,float w);
+			void setMatrix4f(const char* inputName, Matrix4f inputMatrix);
 			void setFloat(const char* inputName, float x);
 			void activate();
 		private:
 			GLuint vertexShaderId;
 			GLuint fragmentShaderId;
-			GLuint programmeId;
+			GLuint programId;
 	};
 }
 #endif

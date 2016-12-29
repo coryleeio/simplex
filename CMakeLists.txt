@@ -11,7 +11,7 @@ set (INCLUDE_DIRS
 
 set (SOURCE_FILES
 	src/shader.cpp
-	src/programme.cpp
+	src/program.cpp
 	src/window.cpp
 	src/logger.cpp
 )
@@ -22,9 +22,13 @@ add_library( SimplexRenderer ${SOURCE_FILES})
 target_link_libraries( SimplexRenderer libglew_static glfw ${GLFW_LIBRARIES})
 
 
-add_executable( demo1 tests/demo1/demo1.cpp)
-add_executable( demo2 tests/demo2/demo2.cpp)
-target_link_libraries(demo1 SimplexRenderer)
-target_link_libraries(demo2 SimplexRenderer)
+add_executable( 4shaders tests/4shaders/4shaders.cpp)
+target_link_libraries(4shaders SimplexRenderer)
+
+add_executable( 5uniforms tests/5uniforms/5uniforms.cpp)
+target_link_libraries(5uniforms SimplexRenderer)
+
+add_executable( 6translation tests/6translation/6translation.cpp)
+target_link_libraries(6translation SimplexRenderer)
 
 ADD_DEFINITIONS(-DGLEW_STATIC)

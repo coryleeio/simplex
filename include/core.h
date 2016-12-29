@@ -2,7 +2,7 @@
 #define CORE_H
 #include <common.h>
 #include <window.h>
-#include <programme.h>
+#include <program.h>
 #include <shader.h>
 #include <logger.h>
 #endif

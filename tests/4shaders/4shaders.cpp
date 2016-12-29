@@ -22,11 +22,11 @@ int main() {
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-  Simplex::Shader vertexShader("../tests/demo1/shader.vert", GL_VERTEX_SHADER);
-  Simplex::Shader fragmentShader("../tests/demo1/shader.frag", GL_FRAGMENT_SHADER);
-  Simplex::Programme programme(vertexShader, fragmentShader);
-  programme.activate();
-  programme.setVector4f("inputColour", 0.5f, 0.0f, 0.5f, 1.0f);
+  Simplex::Shader vertexShader("../tests/4shaders/shader.vert", GL_VERTEX_SHADER);
+  Simplex::Shader fragmentShader("../tests/4shaders/shader.frag", GL_FRAGMENT_SHADER);
+  Simplex::Program program(vertexShader, fragmentShader);
+  program.activate();
+  program.setVector4f("inputColour", 0.5f, 0.0f, 0.5f, 1.0f);
 
   while(!window.shouldClose()) {
     window.clear();
