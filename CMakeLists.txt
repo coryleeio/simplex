@@ -31,4 +31,13 @@ target_link_libraries(5uniforms SimplexRenderer)
 add_executable( 6translation tests/6translation/6translation.cpp)
 target_link_libraries(6translation SimplexRenderer)
 
+add_executable( 7_2drotation tests/7_2drotation/7_2drotation.cpp)
+target_link_libraries(7_2drotation SimplexRenderer)
+
+add_executable( 8scale tests/8scale/8scale.cpp)
+target_link_libraries(8scale SimplexRenderer)
+
+add_executable( 9interpolation tests/9interpolation/9interpolation.cpp)
+target_link_libraries(9interpolation SimplexRenderer)
+
 ADD_DEFINITIONS(-DGLEW_STATIC)
