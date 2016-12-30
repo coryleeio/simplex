@@ -40,4 +40,7 @@ target_link_libraries(8scale SimplexRenderer)
 add_executable( 9interpolation tests/9interpolation/9interpolation.cpp)
 target_link_libraries(9interpolation SimplexRenderer)
 
+add_executable( 10indexeddraws tests/10indexeddraws/10indexeddraws.cpp)
+target_link_libraries(10indexeddraws SimplexRenderer)
+
 ADD_DEFINITIONS(-DGLEW_STATIC)
