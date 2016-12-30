@@ -2,7 +2,6 @@
 
 namespace Simplex
 {
-
 	extern Logger logger;
 	
 	static std::string getFileContents(const char *filename) 

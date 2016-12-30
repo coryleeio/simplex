@@ -40,6 +40,7 @@ namespace Simplex
 		  fprintf(stderr, "ERROR: could not start GLFW3\n");
 		  throw std::exception();
 		} 
+		glfwSwapInterval(1); // v-sync enabled
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);

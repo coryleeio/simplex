@@ -5,4 +5,5 @@
 #include <program.h>
 #include <shader.h>
 #include <logger.h>
+#include <camera.h>
 #endif

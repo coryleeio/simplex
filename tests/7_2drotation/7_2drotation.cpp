@@ -31,11 +31,11 @@ int main() {
    
   /* World translation matrix row-major */
   float input = 0.001f;
-  Matrix4f gworld;
+  Simplex::Matrix4f gworld;
 
 
   while(!window.shouldClose()) {
-    input += 0.0001f;
+    input += 0.02f;
     gworld.m[0][0] = cosf(input); gworld.m[0][1] = -sinf(input); gworld.m[0][2] = 0.0f; gworld.m[0][3] = 0.0f;
     gworld.m[1][0] = sinf(input); gworld.m[1][1] = cosf(input); gworld.m[1][2] = 0.0f; gworld.m[1][3] = 0.0f;
     gworld.m[2][0] = 0.0f; gworld.m[2][1] = 0.0f; gworld.m[2][2] = 1.0f; gworld.m[2][3] = 0.0f;

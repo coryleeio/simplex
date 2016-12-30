@@ -34,7 +34,7 @@ int main() {
 
   while(!window.shouldClose()) {
     program.setFloat("gScale", sinf(input));
-    input += 0.001f;
+    input += 0.02f;
     window.clear();
     // draw points 0-3 from the currently bound VAO with current in-use shader
     glDrawArrays(GL_TRIANGLES, 0, 3);

@@ -5,7 +5,7 @@ namespace Simplex
 	Logger logger;
 
 	#define GL_LOG_FILE "gl.log"
-	static bool restart_gl_log() {
+	static bool restartLog() {
 	  FILE* file = fopen(GL_LOG_FILE, "w");
 	  if(!file) {
 	    fprintf(stderr,
@@ -23,7 +23,7 @@ namespace Simplex
 	Logger::Logger()
 	{
 		log("Constructing logger...\n");
-		assert(restart_gl_log());
+		assert(restartLog());
 	}
 
 	bool Logger::log(const char* message...)

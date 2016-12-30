@@ -20,8 +20,6 @@ int main() {
 	  0, 1, 2 
   };
 
-
-
   // Create vao
   GLuint vao = 0;
   glGenVertexArrays(1, &vao);
@@ -40,7 +38,6 @@ int main() {
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, 12 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
-
   Simplex::Shader vertexShader("../tests/10indexeddraws/shader.vert", GL_VERTEX_SHADER);
   Simplex::Shader fragmentShader("../tests/10indexeddraws/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
@@ -49,10 +46,10 @@ int main() {
   /* World translation matrix row-major */
   float input = 0.001f;
   float scale = 0.001f;
-  Matrix4f gworld;
+  Simplex::Matrix4f gworld;
 
   while(!window.shouldClose()) {
-    input += 0.0001f;
+    input += 0.02f;
     scale = input;
   	gworld.m[0][0] = cosf(scale); gworld.m[0][1] = 0.0f; gworld.m[0][2] = -sinf(scale); gworld.m[0][3] = 0.0f;
   	gworld.m[1][0] = 0.0;         gworld.m[1][1] = 1.0f; gworld.m[1][2] = 0.0f; gworld.m[1][3] = 0.0f;

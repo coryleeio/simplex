@@ -15,7 +15,7 @@ set (SOURCE_FILES
 	src/program.cpp
 	src/window.cpp
 	src/logger.cpp
-	src/ogldev_util.cpp
+	src/math3d.cpp
 )
 
 include_directories(${INCLUDE_DIRS})
