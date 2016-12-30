@@ -7,6 +7,7 @@ set (INCLUDE_DIRS
 	include
 	deps/glfw/include
  	deps/glew/include
+ 	deps/assimp/include/assimp
 )
 
 set (SOURCE_FILES
@@ -14,6 +15,7 @@ set (SOURCE_FILES
 	src/program.cpp
 	src/window.cpp
 	src/logger.cpp
+	src/ogldev_util.cpp
 )
 
 include_directories(${INCLUDE_DIRS})
