@@ -22,7 +22,7 @@ namespace Simplex
 		float w;
 		Vector4f();
 		Vector4f(float x, float y, float z, float w);
-		Vector4f(Vector3f input, float w);
+		Vector4f(const Vector3f& input, float w);
 		Vector4f(float input);
 	};
 

@@ -8,7 +8,7 @@ namespace Simplex
 
 	Vector4f::Vector4f() : x(0.0f), y(0.0f),z(0.0f), w(0.0f) {}
 	Vector4f::Vector4f(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
-	Vector4f::Vector4f(Vector3f input, float w) : x(input.x), y(input.y), z(input.z), w(w) {}
+	Vector4f::Vector4f(const Vector3f& input, float w) : x(input.x), y(input.y), z(input.z), w(w) {}
 	Vector4f::Vector4f(float input) : x(0.0f), y(0.0f),z(0.0f), w(0.0f) {}
 	
 	Matrix4f::Matrix4f()
