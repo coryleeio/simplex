@@ -41,21 +41,18 @@ int main() {
   Simplex::Shader vertexShader("../tests/11concatenatingtransformations/shader.vert", GL_VERTEX_SHADER);
   Simplex::Shader fragmentShader("../tests/11concatenatingtransformations/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
-  program.activate();
+  program.use();
    
   /* World translation matrix row-major */
   float input = 0.001f;
   float scale = 0.001f;
-  Simplex::Matrix4f gworld;
+  Simplex::Transform transform;
 
   while(!window.shouldClose()) {
-    input += 0.02f;
-    scale = input;
-  	gworld.m[0][0] = cosf(scale); gworld.m[0][1] = 0.0f; gworld.m[0][2] = -sinf(scale); gworld.m[0][3] = 0.0f;
-  	gworld.m[1][0] = 0.0;         gworld.m[1][1] = 1.0f; gworld.m[1][2] = 0.0f; gworld.m[1][3] = 0.0f;
-  	gworld.m[2][0] = sinf(scale); gworld.m[2][1] = 0.0f; gworld.m[2][2] = cosf(scale); gworld.m[2][3] = 0.0f;
-  	gworld.m[3][0] = 0.0f;        gworld.m[3][1] = 0.0f; gworld.m[3][2] = 0.0f; gworld.m[3][3] = 1.0f;
-    program.setMatrix4f("gWorld", gworld);
+    transform.setPosition(0.0f, 0.0f, 0.0f);
+    transform.setRotation(572.958 * sinf(input), 0.0f, 0.0f);
+    transform.setScale(1.0f, 1.0f, 1.0f);
+    program.setMatrix4f("gWorld", *(transform.getTransformMatrix()));
     input += 0.001f;
     window.clear();
 

@@ -41,7 +41,7 @@ int main() {
   Simplex::Shader vertexShader("../tests/10indexeddraws/shader.vert", GL_VERTEX_SHADER);
   Simplex::Shader fragmentShader("../tests/10indexeddraws/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
-  program.activate();
+  program.use();
    
   /* World translation matrix row-major */
   float input = 0.001f;
@@ -49,7 +49,7 @@ int main() {
   Simplex::Matrix4f gworld;
 
   while(!window.shouldClose()) {
-    input += 0.02f;
+    input += 0.0005f;
     scale = input;
   	gworld.m[0][0] = cosf(scale); gworld.m[0][1] = 0.0f; gworld.m[0][2] = -sinf(scale); gworld.m[0][3] = 0.0f;
   	gworld.m[1][0] = 0.0;         gworld.m[1][1] = 1.0f; gworld.m[1][2] = 0.0f; gworld.m[1][3] = 0.0f;

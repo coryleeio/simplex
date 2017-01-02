@@ -26,7 +26,7 @@ int main() {
   Simplex::Shader vertexShader("../tests/4shaders/shader.vert", GL_VERTEX_SHADER);
   Simplex::Shader fragmentShader("../tests/4shaders/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
-  program.activate();
+  program.use();
   
   program.setVector4f("inputColour", 0.5f, 0.0f, 0.5f, 1.0f);
 

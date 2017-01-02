@@ -27,7 +27,7 @@ int main() {
   Simplex::Shader vertexShader("../tests/7_2drotation/shader.vert", GL_VERTEX_SHADER);
   Simplex::Shader fragmentShader("../tests/7_2drotation/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
-  program.activate();
+  program.use();
    
   /* World translation matrix row-major */
   float input = 0.001f;

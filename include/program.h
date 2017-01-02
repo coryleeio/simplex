@@ -17,7 +17,7 @@ namespace Simplex
 			void setVector4f(const char* inputName, float x,float y,float z,float w);
 			void setMatrix4f(const char* inputName, Matrix4f inputMatrix);
 			void setFloat(const char* inputName, float x);
-			void activate();
+			void use();
 		private:
 			GLuint vertexShaderId;
 			GLuint fragmentShaderId;

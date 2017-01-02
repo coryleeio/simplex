@@ -163,7 +163,7 @@ namespace Simplex
 		return programId;
 	}
 
-	void Program::activate()
+	void Program::use()
 	{
 		glUseProgram(programId);
 	}

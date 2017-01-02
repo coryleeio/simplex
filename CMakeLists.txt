@@ -16,6 +16,7 @@ set (SOURCE_FILES
 	src/window.cpp
 	src/logger.cpp
 	src/math3d.cpp
+	src/transform.cpp
 )
 
 include_directories(${INCLUDE_DIRS})

@@ -37,4 +37,18 @@ namespace Simplex
 		m[2][0] = input; m[2][1] = input; m[2][2] = input; m[2][3] = input;
 		m[3][0] = input; m[3][1] = input; m[3][2] = input; m[3][3] = input; 
 	}
+
+	Matrix4f Matrix4f::operator*(const Matrix4f& right) const
+	{
+		Matrix4f res;
+		for (unsigned int i = 0 ; i < 4 ; i++) {
+		   for (unsigned int j = 0 ; j < 4 ; j++) {
+		       res.m[i][j] = m[i][0] * right.m[0][j] +
+		                     m[i][1] * right.m[1][j] +
+		                     m[i][2] * right.m[2][j] +
+		                     m[i][3] * right.m[3][j];
+		   }
+		}
+		return res;
+	}
 }

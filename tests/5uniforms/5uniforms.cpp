@@ -28,7 +28,7 @@ int main() {
   Simplex::Shader vertexShader("../tests/5uniforms/shader.vert", GL_VERTEX_SHADER);
   Simplex::Shader fragmentShader("../tests/5uniforms/shader.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
-  program.activate();
+  program.use();
    
   float input = 1.0f;
 
