@@ -56,7 +56,9 @@ namespace Simplex
 
 	Transform::Transform()
 	{
-		
+		setPosition(0.0f, 0.0f, 0.0f);
+		setRotation(0.0f, 0.0f, 0.0f);
+		setScale(1.0f, 1.0f, 1.0f);
 	}
 
 	void Transform::setPosition(float x, float y, float z)

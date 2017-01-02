@@ -7,4 +7,5 @@
 #include <logger.h>
 #include <camera.h>
 #include <transform.h>
+#include <mesh.h>
 #endif
