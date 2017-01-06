@@ -5,9 +5,11 @@ namespace Simplex
 	Logger logger;
 
 	#define LOG_FILE "log.log"
-	static bool restartLog() {
+	static bool restartLog() 
+	{
 	  FILE* file = fopen(LOG_FILE, "w");
-	  if(!file) {
+	  if(!file) 
+	  {
 	    fprintf(stderr,
 	      "ERROR: could not open LOG_FILE log file %s for writing\n",
 	      LOG_FILE);

@@ -4,8 +4,9 @@ namespace Simplex
 {
 	extern Logger logger;
 
-	static void handleError(int error, const char* description) {
-	  printf("GLFW ERROR: code %i msg: %s\n", error, description);
+	static void handleError(int error, const char* description) 
+	{
+		printf("GLFW ERROR: code %i msg: %s\n", error, description);
 	}
 
 	static void handleResize(GLFWwindow* window, int width, int height) {
@@ -13,7 +14,8 @@ namespace Simplex
 		/* update any perspective matrices used here */
 	}
 
-	static void updateFpsCounter(GLFWwindow* window) {
+	static void updateFpsCounter(GLFWwindow* window) 
+	{
 		static double previous_seconds = glfwGetTime();
 		static int frame_count;
 		double current_seconds = glfwGetTime();

@@ -1,6 +1,6 @@
 #ifndef MESH_H
 #define MESH_H
-#include <common.h>
+#include <prerequisites.h>
 
 namespace Simplex
 {

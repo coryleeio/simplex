@@ -1,6 +1,6 @@
-#ifndef CORE_H
-#define CORE_H
-#include <common.h>
+#ifndef SIMPLEX_H
+#define SIMPLEX_H
+#include <prerequisites.h>
 #include <window.h>
 #include <program.h>
 #include <shader.h>

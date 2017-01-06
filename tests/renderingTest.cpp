@@ -1,5 +1,5 @@
 
-#include <core.h>
+#include <simplex.h>
 #include <math.h>
 #define GL_LOG_FILE "gl.log"
 
@@ -21,8 +21,8 @@ int main() {
   };
 
   Simplex::Mesh mesh(vertices, indices);
-  Simplex::Shader vertexShader("../res/shaders/opengl/simple.vert", GL_VERTEX_SHADER);
-  Simplex::Shader fragmentShader("../res/shaders/opengl/simple.frag", GL_FRAGMENT_SHADER);
+  Simplex::Shader vertexShader("../res/shaders/opengl/default.vert", GL_VERTEX_SHADER);
+  Simplex::Shader fragmentShader("../res/shaders/opengl/default.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
   program.use();
    

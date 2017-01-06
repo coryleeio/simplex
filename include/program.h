@@ -1,6 +1,6 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
-#include <common.h>
+#include <shader.h>
 #include <shader.h>
 #include <logger.h>
 

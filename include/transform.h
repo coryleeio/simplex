@@ -1,6 +1,6 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
-#include <common.h>
+#include <prerequisites.h>
 #include <math3d.h>
 
 namespace Simplex

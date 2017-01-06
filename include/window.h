@@ -1,6 +1,6 @@
 #ifndef WINDOW_H
 #define WINDOW_H
-#include <common.h>
+#include <prerequisites.h>
 #include <logger.h>
 namespace Simplex
 {
