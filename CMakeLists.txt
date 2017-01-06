@@ -1,5 +1,8 @@
-project (simplex)
+set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++") 
+set(CMAKE_EXE_LINKER_FLAGS "-stdlib=libc++")
 cmake_minimum_required(VERSION 3.7.1)
+project (simplex)
+
 
 add_subdirectory(deps)
 
