@@ -21,8 +21,8 @@ int main() {
   };
 
   Simplex::Mesh mesh(vertices, indices);
-  Simplex::Shader vertexShader("../res/shaders/simple.vert", GL_VERTEX_SHADER);
-  Simplex::Shader fragmentShader("../res/shaders/simple.frag", GL_FRAGMENT_SHADER);
+  Simplex::Shader vertexShader("../res/shaders/opengl/simple.vert", GL_VERTEX_SHADER);
+  Simplex::Shader fragmentShader("../res/shaders/opengl/simple.frag", GL_FRAGMENT_SHADER);
   Simplex::Program program(vertexShader, fragmentShader);
   program.use();
    

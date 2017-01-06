@@ -1,11 +1,9 @@
 #ifndef MESH_H
 #define MESH_H
 #include <common.h>
-#include <logger.h>
 
 namespace Simplex
 {
-	extern Logger logger;
 	class Mesh 
 	{
 		public:
