@@ -2,7 +2,7 @@
 
 namespace Simplex
 {
-	Mesh::Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices) 
+	Mesh::Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices)
 	{
 		numVertices = vertices.size();
 

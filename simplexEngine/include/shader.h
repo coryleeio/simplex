@@ -1,10 +1,8 @@
 #ifndef SHADER_H
 #define SHADER_H
-#include <prerequisites.h>
-#include <logger.h>
+#include <common.h>
 namespace Simplex
 {
-	extern Logger logger;
 	class Shader 
 	{
 		public:

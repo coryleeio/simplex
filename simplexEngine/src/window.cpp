@@ -2,8 +2,6 @@
 
 namespace Simplex
 {
-	extern Logger logger;
-
 	static void handleError(int error, const char* description) 
 	{
 		printf("GLFW ERROR: code %i msg: %s\n", error, description);
@@ -33,7 +31,7 @@ namespace Simplex
 
 	Window::Window() 
 	{
-		logger.log("Creating window...\n");
+		//logger.log("Creating window...\n");
 
 		printf("GLFW version: %s\n", glfwGetVersionString());
 		glfwSetErrorCallback(handleError);

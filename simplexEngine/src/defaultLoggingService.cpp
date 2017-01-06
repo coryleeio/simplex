@@ -1,9 +1,7 @@
-#include <logger.h>
+#include <defaultLoggingService.h>
 
 namespace Simplex
 {
-	Logger logger;
-
 	#define LOG_FILE "log.log"
 	static bool restartLog() 
 	{
@@ -22,13 +20,18 @@ namespace Simplex
 	  return true;
 	}
 
-	Logger::Logger()
+	DefaultLoggingService::DefaultLoggingService()
 	{
 		log("Constructing logger...\n");
 		assert(restartLog());
 	}
 
-	bool Logger::log(const char* message...)
+	DefaultLoggingService::~DefaultLoggingService()
+	{
+		log("Destructing logger...\n");
+	}
+
+	bool DefaultLoggingService::log(const char* message...)
 	{
 		va_list argptr;
 		FILE* file = fopen(LOG_FILE, "a");
@@ -52,7 +55,7 @@ namespace Simplex
 		return true;
 	}
 
-	bool Logger::error(const char* message...)
+	bool DefaultLoggingService::error(const char* message...)
 	{
 		va_list argptr;
 		FILE* file = fopen(LOG_FILE, "a");

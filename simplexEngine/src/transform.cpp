@@ -17,7 +17,7 @@ namespace Simplex
 
 	static void updateRotationTransform(const Vector3f& input, Matrix4f& output)
 	{
-	    Matrix4f rx, ry, rz, ret;
+		Matrix4f rx, ry, rz, ret;
 
 	    const float x = degreesToRadians(input.x);
 	    const float y = degreesToRadians(input.y);

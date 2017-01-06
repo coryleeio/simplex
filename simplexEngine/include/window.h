@@ -1,10 +1,9 @@
-#ifndef WINDOW_H
-#define WINDOW_H
-#include <prerequisites.h>
-#include <logger.h>
+#ifndef SIMPLEX_WINDOW_H
+#define SIMPLEX_WINDOW_H
+#include <common.h>
+#include <iLoggingService.h>
 namespace Simplex
 {
-	extern Logger logger;
 	class Window
 	{
 		public:

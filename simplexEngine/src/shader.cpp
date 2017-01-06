@@ -2,8 +2,6 @@
 
 namespace Simplex
 {
-	extern Logger logger;
-	
 	static std::string getFileContents(const char *filename) 
 	{
 		std::string shaderString;
@@ -30,7 +28,7 @@ namespace Simplex
 		int actual_length = 0;
 		char shader_log[2048];
 		glGetShaderInfoLog(shader_index, max_length, &actual_length, shader_log);
-		logger.log("shader info log for GL index %u:\n%s\n", shader_index, shader_log);
+		//logger.log("shader info log for GL index %u:\n%s\n", shader_index, shader_log);
 	}
 
 	static void checkShaderCompileErrors(GLuint shader_index) 
@@ -38,7 +36,7 @@ namespace Simplex
 		int params = -1;
 		glGetShaderiv(shader_index, GL_COMPILE_STATUS, &params);
 		if (GL_TRUE != params) {
-			logger.error("ERROR: GL shader index %i did not compile\n", shader_index);
+			//logger.error("ERROR: GL shader index %i did not compile\n", shader_index);
 			printShaderInfoLog(shader_index);
 			exit(1);
 		}
@@ -46,7 +44,7 @@ namespace Simplex
 
 	Shader::Shader(const char *filename, GLenum shaderType) 
 	{
-		logger.log("Building shader...\n");
+		//logger.log("Building shader...\n");
 		std::string shader_str = getFileContents(filename);
 		const char* shader_content = shader_str.c_str();
 		shaderId = glCreateShader(shaderType);

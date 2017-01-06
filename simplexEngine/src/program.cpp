@@ -2,8 +2,6 @@
 
 namespace Simplex
 {
-	extern Logger logger;
-	
 	static const char* glTypeToString(GLenum type) 
 	{
 		switch (type) 
@@ -32,7 +30,7 @@ namespace Simplex
 		int actual_length = 0;
 		char program_log[2048];
 		glGetProgramInfoLog(program, max_length, &actual_length, program_log);
-		logger.error("program info log for GL index %u:\n%s", program, program_log);
+		//logger.error("program info log for GL index %u:\n%s", program, program_log);
 	}
 
 	static void checkShaderProgramLinkingErrors(GLuint program) 
@@ -51,16 +49,16 @@ namespace Simplex
 
 	static void describeShaderProgram(GLuint program) 
 	{
-		logger.log("--------------------\nshader program %i info:\n", program);
+		//logger.log("--------------------\nshader program %i info:\n", program);
 		int params = -1;
 		glGetProgramiv(program, GL_LINK_STATUS, &params);
-		logger.log("GL_LINK_STATUS = %i\n", params);
+		//logger.log("GL_LINK_STATUS = %i\n", params);
 
 		glGetProgramiv(program, GL_ATTACHED_SHADERS, &params);
-		logger.log("GL_ATTACHED_SHADERS = %i\n", params);
+		//logger.log("GL_ATTACHED_SHADERS = %i\n", params);
 
 		glGetProgramiv(program, GL_ACTIVE_ATTRIBUTES, &params);
-		logger.log("GL_ACTIVE_ATTRIBUTES = %i\n", params);
+		//logger.log("GL_ACTIVE_ATTRIBUTES = %i\n", params);
 		for (int i = 0; i < params; i++) 
 		{
 			char name[64];
@@ -84,20 +82,20 @@ namespace Simplex
 					char long_name[64];
 					sprintf(long_name, "%s[%i]", name, j);
 					int location = glGetAttribLocation(program, long_name);
-					logger.log("  %i) type:%s name:%s location:%i\n",
-						i, glTypeToString(type), long_name, location);
+					//logger.log("  %i) type:%s name:%s location:%i\n",
+						//i, glTypeToString(type), long_name, location);
 				}
 			}
 			else 
 			{
 				int location = glGetAttribLocation(program, name);
-				logger.log("  %i) type:%s name:%s location:%i\n",
-					i, glTypeToString(type), name, location);
+				//logger.log("  %i) type:%s name:%s location:%i\n",
+					//i, glTypeToString(type), name, location);
 			}
 		}
 
 		glGetProgramiv(program, GL_ACTIVE_UNIFORMS, &params);
-		logger.log("GL_ACTIVE_UNIFORMS = %i\n", params);
+		//logger.log("GL_ACTIVE_UNIFORMS = %i\n", params);
 		for (int i = 0; i < params; i++) 
 		{
 			char name[64];
@@ -121,15 +119,15 @@ namespace Simplex
 					char long_name[64];
 					sprintf(long_name, "%s[%i]", name, j);
 					int location = glGetUniformLocation(program, long_name);
-					logger.log("  %i) type:%s name:%s location:%i\n",
-						i, glTypeToString(type), long_name, location);
+					//logger.log("  %i) type:%s name:%s location:%i\n",
+						//i, glTypeToString(type), long_name, location);
 				}
 			}
 			else 
 			{
 				int location = glGetUniformLocation(program, name);
-				logger.log("  %i) type:%s name:%s location:%i\n",
-					i, glTypeToString(type), name, location);
+				//logger.log("  %i) type:%s name:%s location:%i\n",
+					//i, glTypeToString(type), name, location);
 			}
 		}
 
@@ -142,7 +140,7 @@ namespace Simplex
 		glValidateProgram(program);
 		int params = -1;
 		glGetProgramiv(program, GL_VALIDATE_STATUS, &params);
-		logger.log("program %i GL_VALIDATE_STATUS = %i\n", program, params);
+		//logger.log("program %i GL_VALIDATE_STATUS = %i\n", program, params);
 		if (GL_TRUE != params) 
 		{
 			printProgramInfoToLog(program);
@@ -153,7 +151,7 @@ namespace Simplex
 
 	Program::Program(Shader& vertexShader, Shader& fragmentShader)
 	{
-		logger.log("Building shader program...\n");
+		//logger.log("Building shader program...\n");
 		vertexShaderId = vertexShader.getShaderId();
 		fragmentShaderId = fragmentShader.getShaderId();
 		programId = glCreateProgram();

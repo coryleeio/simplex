@@ -1,6 +1,6 @@
-#ifndef MATH3D_H
-#define MATH3D_H
-#include <prerequisites.h>
+#ifndef SIMPLEX_MATH3D_H
+#define SIMPLEX_MATH3D_H
+#include <common.h>
 
 namespace Simplex
 {

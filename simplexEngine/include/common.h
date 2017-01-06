@@ -1,9 +1,8 @@
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#ifndef SIMPLEX_PREREQUISITES_H
+#define SIMPLEX_PREREQUISITES_H
 #include <GL/glew.h> // include GLEW and new version of GL on Windows
 #include <GLFW/glfw3.h> // GLFW helper library
 #include <math.h>
-#include <math3d.h>
 #include <stdio.h>
 #include <fstream>
 #include <streambuf>
