@@ -1,4 +1,5 @@
 #include <core.h>
+#include <glRenderingService.h>
 
 namespace Simplex
 {
@@ -23,6 +24,11 @@ namespace Simplex
 		{
 			delete loggingService;
 		}
+
+		if(renderingService)
+		{
+			delete renderingService;
+		}
 	}
 
 	void Core::initialize()
@@ -30,6 +36,10 @@ namespace Simplex
 		if(!loggingService)
 		{
 			setLoggingService(new DefaultLoggingService());
+		}
+		if(!renderingService)
+		{
+			setRenderingService(new GLRenderingService());
 		}
 		isInitialized = true;
 	}
@@ -45,6 +55,21 @@ namespace Simplex
 			delete loggingService;
 		}
 		loggingService = newLoggingService;
+		serviceLocatorService->provide(loggingService);
+	}
+
+	void Core::setRenderingService(IRenderingService* newRenderingService)
+	{
+		if (isInitialized)
+		{
+			throw std::runtime_error("Cannot set service after initialization");
+		}
+		if (renderingService)
+		{
+			delete renderingService;
+		}
+		renderingService = newRenderingService;
+		serviceLocatorService->provide(renderingService);
 	}
 
 	IServiceLocatorService* Core::getServiceLocatorService()

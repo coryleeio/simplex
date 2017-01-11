@@ -3,10 +3,10 @@
 #include <common.h>
 namespace Simplex
 {
-	class Shader 
+	class GLShader 
 	{
 		public:
-			Shader(const char *filename, GLenum shaderType);
+			GLShader(const char *filename, GLenum shaderType);
 			GLuint getShaderId();
 		private:
 			GLuint shaderId;

@@ -15,10 +15,12 @@ namespace Simplex
 		    ~Core();
 		    void initialize();
 		    IServiceLocatorService* getServiceLocatorService();
-		    void setLoggingService(ILoggingService* loggingService);
+		    void setLoggingService(ILoggingService* newLoggingService);
+		    void setRenderingService(IRenderingService* newRenderingService);
 		private:
 			IServiceLocatorService* serviceLocatorService = NULL;
 			ILoggingService* loggingService = NULL;
+			IRenderingService* renderingService = NULL;
 			bool isInitialized = false;
 	};
 }

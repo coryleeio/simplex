@@ -3,9 +3,9 @@
 #include <common.h>
 #include <iLoggingService.h>
 #include <iServiceLocatorService.h>
-#include <window.h>
-#include <program.h>
-#include <shader.h>
+#include <glWindow.h>
+#include <glProgram.h>
+#include <glShader.h>
 #include <defaultLoggingService.h>
 #include <defaultServiceLocatorService.h>
 #include <transform.h>

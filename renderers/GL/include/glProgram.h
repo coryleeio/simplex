@@ -1,15 +1,15 @@
 #ifndef SIMPLEX_PROGRAM_H
 #define SIMPLEX_PROGRAM_H
-#include <shader.h>
+#include <glShader.h>
 #include <iLoggingService.h>
 #include <math3d.h>
 
 namespace Simplex
 {
-	class Program 
+	class GLProgram 
 	{
 		public:
-			Program(Shader& vertexShader, Shader& fragmentShader);
+			GLProgram(GLShader& vertexShader, GLShader& fragmentShader);
 			GLuint getProgramId();
 			GLuint getVertexShaderId();
 			GLuint getFragmentShaderId();

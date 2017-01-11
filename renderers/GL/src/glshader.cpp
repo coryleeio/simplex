@@ -1,4 +1,4 @@
-#include <shader.h>
+#include <glShader.h>
 
 namespace Simplex
 {
@@ -42,7 +42,7 @@ namespace Simplex
 		}
 	}
 
-	Shader::Shader(const char *filename, GLenum shaderType) 
+	GLShader::GLShader(const char *filename, GLenum shaderType) 
 	{
 		//logger.log("Building shader...\n");
 		std::string shader_str = getFileContents(filename);
@@ -53,7 +53,7 @@ namespace Simplex
 		checkShaderCompileErrors(shaderId);
 	}
 
-	GLuint Shader::getShaderId() 
+	GLuint GLShader::getShaderId() 
 	{
 		return shaderId;
 	}

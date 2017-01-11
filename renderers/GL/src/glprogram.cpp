@@ -1,4 +1,4 @@
-#include <program.h>
+#include <glProgram.h>
 
 namespace Simplex
 {
@@ -149,7 +149,7 @@ namespace Simplex
 		return true;
 	}
 
-	Program::Program(Shader& vertexShader, Shader& fragmentShader)
+	GLProgram::GLProgram(GLShader& vertexShader, GLShader& fragmentShader)
 	{
 		//logger.log("Building shader program...\n");
 		vertexShaderId = vertexShader.getShaderId();
@@ -162,40 +162,40 @@ namespace Simplex
 		isValid(programId);
 	}
 
-	GLuint Program::getVertexShaderId()
+	GLuint GLProgram::getVertexShaderId()
 	{
 		return vertexShaderId;
 	}
 
-	GLuint Program::getFragmentShaderId()
+	GLuint GLProgram::getFragmentShaderId()
 	{
 		return fragmentShaderId;
 	}
 
-	GLuint Program::getProgramId() 
+	GLuint GLProgram::getProgramId() 
 	{
 		return programId;
 	}
 
-	void Program::use()
+	void GLProgram::use()
 	{
 		glUseProgram(programId);
 	}
 
-	void Program::setVector4f(const char* inputName, float x,float y,float z,float w)
+	void GLProgram::setVector4f(const char* inputName, float x,float y,float z,float w)
 	{
 		GLint inputLocation = glGetUniformLocation(programId, inputName);
 		glUniform4f(inputLocation, x, y, z, w);
 	}
 
-	void Program::setFloat(const char* inputName, float input)
+	void GLProgram::setFloat(const char* inputName, float input)
 	{
 		GLint inputLocation = glGetUniformLocation(programId, inputName);
 		assert(inputLocation != 0xFFFFFFFF);
 		glUniform1f(inputLocation, input);
 	}
 
-	void Program::setMatrix4f(const char* inputName, Matrix4f inputMatrix)
+	void GLProgram::setMatrix4f(const char* inputName, Matrix4f inputMatrix)
 	{
 		GLint worldLocation = glGetUniformLocation(programId, inputName);
 		glUniformMatrix4fv(worldLocation, 1, GL_TRUE, &inputMatrix.m[0][0]);

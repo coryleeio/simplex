@@ -4,10 +4,10 @@
 #include <iLoggingService.h>
 namespace Simplex
 {
-	class Window
+	class GLWindow
 	{
 		public:
-			Window();
+			GLWindow();
 			bool shouldClose();
 			void close();
 			void draw();

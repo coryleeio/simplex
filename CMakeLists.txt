@@ -5,28 +5,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-add_subdirectory(deps)
+add_subdirectory(dependencies)
 
 set (DEPENDENCIES 
-	simplexEngine/include
-	deps/glfw/include
- 	deps/glew/include
- 	deps/assimp/include
+	engine/include
+	renderers/GL/include
+	dependencies/glfw/include
+ 	dependencies/glew/include
+ 	dependencies/assimp/include
 )
 
 include_directories(${DEPENDENCIES})
 
-add_subdirectory(simplexEngine)
-
-add_executable( renderingTest tests/renderingTest.cpp)
-target_link_libraries(
-	renderingTest
-	simplexEngine
-)
-
-
-add_executable( coreTest tests/coreTest.cpp)
-target_link_libraries(
-	coreTest
-	simplexEngine
-)
+add_subdirectory(renderers)
+add_subdirectory(engine)
+add_subdirectory(examples)

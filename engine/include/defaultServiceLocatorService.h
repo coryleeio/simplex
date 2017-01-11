@@ -10,11 +10,13 @@ namespace Simplex
 	class DefaultServiceLocatorService : public IServiceLocatorService 
 	{
 		public:
-			ILoggingService* getLoggingService();
 			void provide(ILoggingService* newLoggingService);
-			void initialize();
+			void provide(IRenderingService* newRenderingService);
+			ILoggingService* getLoggingService();
+			IRenderingService* getRenderingService();
 		private:
 			ILoggingService* loggingService = NULL;
+			IRenderingService* renderingService = NULL;
 	};
 }
 #endif

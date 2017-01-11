@@ -1,4 +1,4 @@
-#include <window.h>
+#include <glWindow.h>
 
 namespace Simplex
 {
@@ -29,7 +29,7 @@ namespace Simplex
 		frame_count++;
 	}
 
-	Window::Window() 
+	GLWindow::GLWindow() 
 	{
 		//logger.log("Creating window...\n");
 
@@ -72,7 +72,7 @@ namespace Simplex
 		glDepthFunc(GL_LESS); // depth-testing interprets a smaller value as "closer"
 	}
 
-	void Window::draw()
+	void GLWindow::draw()
 	{
 		glfwPollEvents();
 		// put the stuff we've been drawing onto the display
@@ -82,19 +82,19 @@ namespace Simplex
 		}
 	}
 
-	void Window::clear() 
+	void GLWindow::clear() 
 	{
 		updateFpsCounter(window);
 	    // wipe the drawing surface clear
 	    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void Window::close()
+	void GLWindow::close()
 	{
 		glfwSetWindowShouldClose(window, 1);
 	}
 
-	bool Window::shouldClose() 
+	bool GLWindow::shouldClose() 
 	{
 		return glfwWindowShouldClose(window);
 	}

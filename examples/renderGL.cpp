@@ -1,10 +1,11 @@
 
 #include <simplex.h>
+#include <glRenderingService.h>
 #include <math.h>
 #define GL_LOG_FILE "gl.log"
 
 int main() {
-  Simplex::Window window;
+  Simplex::GLWindow window;
 
   std::vector<float> vertices = {
     -1.0f, -1.0f, 0.0f,    // 0
@@ -20,10 +21,11 @@ int main() {
 	  0, 1, 2 
   };
 
-  Simplex::Mesh mesh(vertices, indices);
-  Simplex::Shader vertexShader("../res/shaders/opengl/default.vert", GL_VERTEX_SHADER);
-  Simplex::Shader fragmentShader("../res/shaders/opengl/default.frag", GL_FRAGMENT_SHADER);
-  Simplex::Program program(vertexShader, fragmentShader);
+  Simplex::GLRenderingService renderer;
+  Simplex::Mesh* mesh = renderer.loadMesh(vertices, indices);
+  Simplex::GLShader vertexShader("../resources/shaders/opengl/default.vert", GL_VERTEX_SHADER);
+  Simplex::GLShader fragmentShader("../resources/shaders/opengl/default.frag", GL_FRAGMENT_SHADER);
+  Simplex::GLProgram program(vertexShader, fragmentShader);
   program.use();
    
   /* World translation matrix row-major */
@@ -38,8 +40,7 @@ int main() {
     program.setMatrix4f("gWorld", *(transform.getTransformMatrix()));
     input += 0.001f;
     window.clear();
-
-    mesh.render();
+    renderer.drawMesh(mesh);
     glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0); // Type, num indices, type of indices, byte offset
     // update other events like input handling  
     window.draw();
