@@ -26,6 +26,7 @@ target_link_libraries(
 	${GLFW_LIBRARIES}
 )
 
-
-
-
+add_custom_command(TARGET simplex_gl POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${PROJECT_SOURCE_DIR}/renderers/GL/resources
+        $<TARGET_FILE_DIR:simplex_gl>/resources)

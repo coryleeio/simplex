@@ -8,14 +8,15 @@ namespace Simplex
 	    for(itr = meshCollection.begin(), end = meshCollection.end() ; itr != end; ++itr) 
 	    {
 			delete (*itr);
-			meshCollection.erase(itr);
 	    }
+	    meshCollection.clear();
 
 	    for(std::map<int, GLMeshInfo*>::iterator itr = meshIdToInfoMap.begin(); itr != meshIdToInfoMap.end(); itr++)
 	    {
 	        delete itr->second;
-	        meshIdToInfoMap.erase(itr);
 	    }
+	    meshIdToInfoMap.clear();
+	    glfwTerminate();
 	}
 
 	Mesh* GLRenderingService::loadMesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices)

@@ -2,7 +2,6 @@
 #include <simplex.h>
 #include <glRenderingService.h>
 #include <math.h>
-#define GL_LOG_FILE "gl.log"
 
 int main() {
   Simplex::GLWindow window;
@@ -23,8 +22,9 @@ int main() {
 
   Simplex::GLRenderingService renderer;
   Simplex::Mesh* mesh = renderer.loadMesh(vertices, indices);
-  Simplex::GLShader vertexShader("../resources/shaders/opengl/default.vert", GL_VERTEX_SHADER);
-  Simplex::GLShader fragmentShader("../resources/shaders/opengl/default.frag", GL_FRAGMENT_SHADER);
+  // TODO: fix relative path
+  Simplex::GLShader vertexShader("../../renderers/GL/resources/default.vert", GL_VERTEX_SHADER);
+  Simplex::GLShader fragmentShader("../../renderers/GL/resources/default.frag", GL_FRAGMENT_SHADER);
   Simplex::GLProgram program(vertexShader, fragmentShader);
   program.use();
    
@@ -37,11 +37,12 @@ int main() {
     transform.setPosition(0.0f, 0.0f, 0.0f);
     transform.setRotation(572.958 * sinf(input), 0.0f, 0.0f);
     transform.setScale(1.0f, 1.0f, 1.0f);
-    program.setMatrix4f("gWorld", *(transform.getTransformMatrix()));
+   
     input += 0.001f;
+
+    program.setMatrix4f("gWorld", *(transform.getTransformMatrix()));
     window.clear();
     renderer.drawMesh(mesh);
-    glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0); // Type, num indices, type of indices, byte offset
     // update other events like input handling  
     window.draw();
   }
