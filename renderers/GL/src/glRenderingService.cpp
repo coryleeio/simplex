@@ -2,6 +2,15 @@
 
 namespace Simplex
 {
+	GLRenderingService::GLRenderingService()
+	{
+		window = new GLWindow();
+		vertexShader = new GLShader("../../renderers/GL/resources/default.vert", GL_VERTEX_SHADER);
+		fragmentShader = new GLShader("../../renderers/GL/resources/default.frag", GL_FRAGMENT_SHADER);
+		program = new GLProgram(vertexShader, fragmentShader);
+		program->use();
+	}
+
 	GLRenderingService::~GLRenderingService()
 	{
 		std::vector<Mesh*>::iterator itr, end;
@@ -16,7 +25,24 @@ namespace Simplex
 	        delete itr->second;
 	    }
 	    meshIdToInfoMap.clear();
-	    glfwTerminate();
+
+	    if(window)
+	    {
+	    	delete window;
+	    }
+	    if(vertexShader)
+	    {
+	    	delete vertexShader;
+	    }
+	    if(fragmentShader)
+	    {
+	    	delete fragmentShader;
+	    }
+	    if(program)
+	    {
+	    	delete program;
+	    }
+		glfwTerminate();
 	}
 
 	Mesh* GLRenderingService::loadMesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices)
@@ -51,11 +77,38 @@ namespace Simplex
 		return mesh;
 	}
 
-	void GLRenderingService::drawMesh(Mesh* mesh)
+	void GLRenderingService::drawMesh(Mesh* mesh, Transform* transform)
 	{
+		program->setMatrix4f("gWorld", *(transform->getTransformMatrix()));
 		GLMeshInfo* info = meshIdToInfoMap[mesh->id];
 		glBindVertexArray(info->vao); // bind the vao we are going to draw
 		glDrawElements(GL_TRIANGLES, info->numVertices, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0); // unbind so this isnt modified by anyone
+	}
+
+	void GLRenderingService::drawMesh(Mesh* mesh)
+	{
+		Transform transform;
+		transform.setPosition(0.0f, 0.0f, 0.0f);
+		transform.setRotation(0.0f, 0.0f, 0.0f);
+		transform.setScale(1.0f, 1.0f, 1.0f);
+		drawMesh(mesh, &transform);
+	}
+
+	// Temporary pass through to touch renderer window until renderer can stand on its own
+	// These methods should definitely go away
+	void GLRenderingService::drawWindow()
+	{
+		window->draw();
+	}
+
+	void GLRenderingService::clearWindow()
+	{
+		window->clear();
+	}
+
+	bool GLRenderingService::shouldCloseWindow()
+	{
+		return window->shouldClose();
 	}
 }

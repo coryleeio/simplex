@@ -9,7 +9,7 @@ namespace Simplex
 	class GLProgram 
 	{
 		public:
-			GLProgram(GLShader& vertexShader, GLShader& fragmentShader);
+			GLProgram(GLShader* vertexShader, GLShader* fragmentShader);
 			GLuint getProgramId();
 			GLuint getVertexShaderId();
 			GLuint getFragmentShaderId();

@@ -149,14 +149,14 @@ namespace Simplex
 		return true;
 	}
 
-	GLProgram::GLProgram(GLShader& vertexShader, GLShader& fragmentShader)
+	GLProgram::GLProgram(GLShader* vertexShader, GLShader* fragmentShader)
 	{
 		//logger.log("Building shader program...\n");
-		vertexShaderId = vertexShader.getShaderId();
-		fragmentShaderId = fragmentShader.getShaderId();
+		vertexShaderId = vertexShader->getShaderId();
+		fragmentShaderId = fragmentShader->getShaderId();
 		programId = glCreateProgram();
-		glAttachShader(programId, fragmentShader.getShaderId());
-		glAttachShader(programId, vertexShader.getShaderId());
+		glAttachShader(programId, fragmentShader->getShaderId());
+		glAttachShader(programId, vertexShader->getShaderId());
 		glLinkProgram(programId);
 		checkShaderProgramLinkingErrors(programId);
 		isValid(programId);
