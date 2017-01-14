@@ -1,9 +1,11 @@
 
 set (HEADER_FILES
 	include/common.h
+	include/camera.h
 	include/math3d.h
 	include/simplex.h
 	include/transform.h
+	include/perspectiveProjection.h
 	include/mesh.h
 	include/core.h
 	include/iLoggingService.h
@@ -16,6 +18,7 @@ set (HEADER_FILES
 set (SOURCE_FILES
 	src/math3d.cpp
 	src/transform.cpp
+	src/camera.cpp
 	src/mesh.cpp
 	src/core.cpp
 	src/defaultLoggingService.cpp

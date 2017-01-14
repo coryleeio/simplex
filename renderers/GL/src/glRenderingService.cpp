@@ -77,9 +77,21 @@ namespace Simplex
 		return mesh;
 	}
 
+	void GLRenderingService::drawMesh(Camera* camera, Transform* transform, Mesh* mesh)
+	{
+		const Matrix4f cameraTransformationMatrix = *(camera->getCameraTransformMatrix());
+		const Matrix4f gWorld = *(transform->getTransformMatrix());
+		Matrix4f globalWorldViewProjectionMatrix = cameraTransformationMatrix * gWorld;
+		program->setMatrix4f("globalWorldViewProjectionMatrix", globalWorldViewProjectionMatrix);
+		GLMeshInfo* info = meshIdToInfoMap[mesh->id];
+		glBindVertexArray(info->vao); // bind the vao we are going to draw
+		glDrawElements(GL_TRIANGLES, info->numVertices, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0); // unbind so this isnt modified by anyone
+	}
+
 	void GLRenderingService::drawMesh(Mesh* mesh, Transform* transform)
 	{
-		program->setMatrix4f("gWorld", *(transform->getTransformMatrix()));
+		program->setMatrix4f("globalWorldViewProjectionMatrix", *(transform->getTransformMatrix()));
 		GLMeshInfo* info = meshIdToInfoMap[mesh->id];
 		glBindVertexArray(info->vao); // bind the vao we are going to draw
 		glDrawElements(GL_TRIANGLES, info->numVertices, GL_UNSIGNED_INT, 0);

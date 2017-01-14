@@ -11,4 +11,6 @@
 #include <transform.h>
 #include <mesh.h>
 #include <core.h>
+#include <camera.h>
+#include <perspectiveProjection.h>
 #endif

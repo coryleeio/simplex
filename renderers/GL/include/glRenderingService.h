@@ -21,6 +21,7 @@ namespace Simplex
 			~GLRenderingService();
 			void drawMesh(Mesh* mesh);
 			void drawMesh(Mesh* mesh, Transform* transform);
+			void drawMesh(Camera* camera, Transform* transform, Mesh* mesh);
 			void drawWindow();
 			void clearWindow();
 			bool shouldCloseWindow();
