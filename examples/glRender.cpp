@@ -24,7 +24,10 @@ int main() {
 
   Simplex::Mesh* mesh = renderer->loadMesh(vertices, indices);
   float input = 0.001f;
-  Simplex::Transform transform;
+  Simplex::Transform transform1;
+  Simplex::Transform transform2;
+  Simplex::Transform transform3;
+  Simplex::Transform transform4;
   Simplex::PerspectiveProjection* perspectiveProjection = new Simplex::PerspectiveProjection();
   perspectiveProjection->fieldOfView = 30.0f;
   perspectiveProjection->zNear = 1.0f;
@@ -35,15 +38,31 @@ int main() {
   while(!renderer->shouldCloseWindow()) {
 
     // this will later be moved into the components update() method.
-    transform.setPosition(0.0f, 0.0f, 5.0f);
-    transform.setRotation(100.0f * sinf(input), 0.0f, 0.0f);
-    transform.setScale(1.0f, 1.0f, 1.0f);
+    transform1.setPosition(sinf(input) * 5.0f, cosf(input) * 5.0f * sinf(input), 30.0f);
+    transform1.setRotation(0.0f, 100.0f * sinf(input), 100.0f * sinf(input));
+    transform1.setScale(1.0f, 1.0f, 1.0f);
+
+    transform2.setPosition(-1.0f * cosf(input), sinf(input), sinf(input)* 15.0f + 15.0f);
+    transform2.setRotation(100.0f * sinf(input), 0.0f, 0.0f);
+    transform2.setScale(1.0f, 1.0f, 1.0f);
+
+    transform3.setPosition(1.0f, 0.0f, cosf(input) * 15.0f + 15.0f);
+    transform3.setRotation(40.0f, 0.0f, 200.0f * cosf(input));
+    transform3.setScale(1.0f, 1.0f, 1.0f);
+
+    transform4.setPosition(cosf(input) * 5.0f, sinf(input) * 5.0f * sinf(input), 30.0f);
+    transform4.setRotation(0.0f, 100.0f * cosf(input), 100.0f * cosf(input));
+    transform4.setScale(1.0f, 1.0f, 1.0f);
+
     input += 0.001f;
 
     // this will later be moved all into the renderer, when the transform information
     // for the actor is available elsewhere.
     renderer->clearWindow();
-    renderer->drawMesh(&camera, &transform, mesh);
+    renderer->drawMesh(&camera, &transform1, mesh);
+    renderer->drawMesh(&camera, &transform2, mesh);
+    renderer->drawMesh(&camera, &transform3, mesh);
+    renderer->drawMesh(&camera, &transform4, mesh);
     renderer->drawWindow();
 
     // once these are done, the main loop can be extracted into core start method
