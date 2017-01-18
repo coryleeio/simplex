@@ -10,14 +10,15 @@ namespace Simplex
 		public:
 			Camera(PerspectiveProjection* p);
 			~Camera();
-			const Matrix4f* getCameraTransformMatrix();
+			const Matrix4f* getViewProjectionMatrix();
 		private:
 			Vector3f position;
 			Vector3f target;
 			Vector3f up;
+			Matrix4f viewProjectionMatrix;
 			Matrix4f perspectiveProjectionMatrix;
 			PerspectiveProjection* perspectiveProjection;
-			Matrix4f cameraTransformMatrix;
+			bool perspectiveProjectionMatrixDirty = true;
 	};
 }
 #endif

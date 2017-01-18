@@ -7,12 +7,13 @@ namespace Simplex
 		return degrees * 3.141592653589793 / 180.0f;
 	}
 
-	static void updateScaleTransform(const Vector3f& input, Matrix4f& output)
+
+	static void updateTranslationTransform(const Vector3f& input, Matrix4f& output)
 	{
-	    output.m[0][0] = input.x; output.m[0][1] = 0.0f;   output.m[0][2] = 0.0f;   output.m[0][3] = 0.0f;
-	    output.m[1][0] = 0.0f;   output.m[1][1] = input.y; output.m[1][2] = 0.0f;   output.m[1][3] = 0.0f;
-	    output.m[2][0] = 0.0f;   output.m[2][1] = 0.0f;   output.m[2][2] = input.z; output.m[2][3] = 0.0f;
-	    output.m[3][0] = 0.0f;   output.m[3][1] = 0.0f;   output.m[3][2] = 0.0f;   output.m[3][3] = 1.0f;
+		output.m[0][0] = 1.0f; output.m[0][1] = 0.0f; output.m[0][2] = 0.0f; output.m[0][3] = input.x;
+		output.m[1][0] = 0.0f; output.m[1][1] = 1.0f; output.m[1][2] = 0.0f; output.m[1][3] = input.y;
+		output.m[2][0] = 0.0f; output.m[2][1] = 0.0f; output.m[2][2] = 1.0f; output.m[2][3] = input.z;
+		output.m[3][0] = 0.0f; output.m[3][1] = 0.0f; output.m[3][2] = 0.0f; output.m[3][3] = 1.0f;
 	}
 
 	static void updateRotationTransform(const Vector3f& input, Matrix4f& output)
@@ -46,12 +47,12 @@ namespace Simplex
 	    output.m[3][0] = ret.m[3][0]; output.m[3][1] = ret.m[3][1]; output.m[3][2] = ret.m[3][2]; output.m[3][3] = ret.m[3][3];
 	}
 
-	static void updateTranslationTransform(const Vector3f& input, Matrix4f& output)
+	static void updateScaleTransform(const Vector3f& input, Matrix4f& output)
 	{
-		output.m[0][0] = 1.0f; output.m[0][1] = 0.0f; output.m[0][2] = 0.0f; output.m[0][3] = input.x;
-		output.m[1][0] = 0.0f; output.m[1][1] = 1.0f; output.m[1][2] = 0.0f; output.m[1][3] = input.y;
-		output.m[2][0] = 0.0f; output.m[2][1] = 0.0f; output.m[2][2] = 1.0f; output.m[2][3] = input.z;
-		output.m[3][0] = 0.0f; output.m[3][1] = 0.0f; output.m[3][2] = 0.0f; output.m[3][3] = 1.0f;
+	    output.m[0][0] = input.x; output.m[0][1] = 0.0f;   output.m[0][2] = 0.0f;   output.m[0][3] = 0.0f;
+	    output.m[1][0] = 0.0f;   output.m[1][1] = input.y; output.m[1][2] = 0.0f;   output.m[1][3] = 0.0f;
+	    output.m[2][0] = 0.0f;   output.m[2][1] = 0.0f;   output.m[2][2] = input.z; output.m[2][3] = 0.0f;
+	    output.m[3][0] = 0.0f;   output.m[3][1] = 0.0f;   output.m[3][2] = 0.0f;   output.m[3][3] = 1.0f;
 	}
 
 	Transform::Transform()
@@ -66,6 +67,7 @@ namespace Simplex
 		position.x = x;
 		position.y = y;
 		position.z = z;
+		translationMatrixDirty = true;
 	}
 
 	void Transform::setRotation(float x, float y, float z)
@@ -73,6 +75,7 @@ namespace Simplex
 		rotation.x = x;
 		rotation.y = y;
 		rotation.z = z;
+		rotationMatrixDirty = true;
 	}
 
 	void Transform::setScale(float scaleX, float scaleY, float scaleZ)
@@ -80,14 +83,30 @@ namespace Simplex
 		scale.x = scaleX;
 		scale.y = scaleY;
 		scale.z = scaleZ;
+		scaleMatrixDirty = true;
 	}
 	
-	const Matrix4f* Transform::getTransformMatrix()
+	const Matrix4f* Transform::getGlobalWorldMatrix()
 	{
-		updateTranslationTransform(position, translationMatrix);
-		updateRotationTransform(rotation, rotationMatrix);
-		updateScaleTransform(scale, scaleMatrix);
-		transformMatrix = translationMatrix * rotationMatrix * scaleMatrix;
-		return &transformMatrix;
+		if(translationMatrixDirty)
+		{
+			updateTranslationTransform(position, translationMatrix);
+			translationMatrixDirty = false;	
+		}
+		
+		if(rotationMatrixDirty)
+		{
+			updateRotationTransform(rotation, rotationMatrix);	
+			rotationMatrixDirty = false;
+		}
+		
+		if(scaleMatrixDirty)
+		{
+			updateScaleTransform(scale, scaleMatrix);	
+			scaleMatrixDirty = false;
+		}
+		
+		globalWorldMatrix = translationMatrix * rotationMatrix * scaleMatrix;
+		return &globalWorldMatrix;
 	}
 }

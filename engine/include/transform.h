@@ -12,7 +12,7 @@ namespace Simplex
 			void setPosition(float x, float y, float z);
 			void setRotation(float yaw, float pitch, float roll);
 			void setScale(float scaleX, float scaleY, float scaleZ);
-			const Matrix4f* getTransformMatrix();
+			const Matrix4f* getGlobalWorldMatrix();
 		private:
 			Vector3f position;
 			Vector3f rotation;
@@ -22,7 +22,10 @@ namespace Simplex
 			Matrix4f rotationMatrix;
 			Matrix4f scaleMatrix;
 			
-			Matrix4f transformMatrix;
+			Matrix4f globalWorldMatrix;
+			bool translationMatrixDirty = true;
+			bool rotationMatrixDirty = true;
+			bool scaleMatrixDirty = true;
 	};
 }
 #endif

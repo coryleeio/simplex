@@ -44,10 +44,15 @@ namespace Simplex
 		output.m[3][3] = 0.0f;
 	}
 
-	const Matrix4f* Camera::getCameraTransformMatrix()
+	const Matrix4f* Camera::getViewProjectionMatrix()
 	{
-		updatePerspectiveProjectionMatrix(perspectiveProjection, perspectiveProjectionMatrix);
-		cameraTransformMatrix = perspectiveProjectionMatrix;
-		return &cameraTransformMatrix;
+		if(perspectiveProjectionMatrixDirty)
+		{
+			updatePerspectiveProjectionMatrix(perspectiveProjection, perspectiveProjectionMatrix);
+			perspectiveProjectionMatrixDirty = false;
+		}
+		
+		viewProjectionMatrix = perspectiveProjectionMatrix;
+		return &viewProjectionMatrix;
 	}
 }
