@@ -5,12 +5,37 @@ namespace Simplex
 	Vector3f::Vector3f() : x(0.0f), y(0.0f),z(0.0f) {}
 	Vector3f::Vector3f(float x, float y, float z) : x(x), y(y),z(z) {}
 	Vector3f::Vector3f(float input) : x(input), y(input), z(input) {}
+	Vector3f Vector3f::cross(const Vector3f& v) const
+	{
+		const float _x = y * v.z - z * v.y;
+		const float _y = z * v.x - x * v.z;
+		const float _z = x * v.y - y * v.x;
+		return Vector3f(_x, _y, _z);
+	}
+
+	Vector3f& Vector3f::normalize()
+	{
+		const float length = sqrtf(x*x + y*y + z*z);
+		x /= length;
+		y /= length;
+		z /= length;
+		return *this;
+	}
 
 	Vector4f::Vector4f() : x(0.0f), y(0.0f),z(0.0f), w(0.0f) {}
 	Vector4f::Vector4f(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 	Vector4f::Vector4f(const Vector3f& input, float w) : x(input.x), y(input.y), z(input.z), w(w) {}
 	Vector4f::Vector4f(float input) : x(0.0f), y(0.0f),z(0.0f), w(0.0f) {}
-	
+	Vector4f& Vector4f::normalize()
+	{
+		const float length = sqrtf(x*x + y*y + z*z + w*w);
+		x /= length;
+		y /= length;
+		z /= length;
+		w /= length;
+		return *this;
+	}
+
 	Matrix4f::Matrix4f()
 	{
 		m[0][0] = 0.0f; m[0][1] = 0.0f; m[0][2] = 0.0f; m[0][3] = 0.0f;

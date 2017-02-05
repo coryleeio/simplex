@@ -12,6 +12,8 @@ namespace Simplex
 		Vector3f();
 		Vector3f(float x, float y, float z);
 		Vector3f(float input);
+		Vector3f cross(const Vector3f& v) const;
+		Vector3f& normalize();
 	};
 
 	struct Vector4f
@@ -24,6 +26,7 @@ namespace Simplex
 		Vector4f(float x, float y, float z, float w);
 		Vector4f(const Vector3f& input, float w);
 		Vector4f(float input);
+		Vector4f& normalize();
 	};
 
 	struct Matrix4f
